@@ -40,6 +40,10 @@ The launcher starts/checks the server on that port and opens http://127.0.0.1:52
 
 The original development checkout uses a junction to local Three.js/Vite dependencies; do not delete that node_modules junction recursively. Fresh checkouts create their own dependencies with `npm ci`.
 
+## Check the local build
+
+`package.json` also carries an integration script that `npm run build` and `npm start` do not mention: `npm run verify`. It walks both modes in a real browser, so it needs a running server (`npm start` in a second terminal) and Google Chrome installed for Playwright (`npx playwright install chrome`). Without Chrome it stops immediately with `browserType.launch: Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome`. Pass a base URL and a run id if you want the captures under another folder: `npm run verify -- http://127.0.0.1:5190 my-run`. It writes screenshots and JSON reports into `artifacts/`, which is excluded from Git.
+
 The Git repository includes `tour/`, `night/`, `shared/`, source assets, build/server tools and written evidence. Generated `dist/` and `release/`, dependencies, local `Old/` snapshots, screenshots, recordings and raw QA results are excluded. Evidence documents describe historical runs; their local capture paths are not included in this source repository.
 
 ## GitHub Pages hosting
